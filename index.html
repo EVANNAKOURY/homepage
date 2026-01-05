@@ -1,24 +1,687 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evanna Koury - Homepage</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evanna Koury - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-cove: #071a3b;
+      --rock-blue: #9db4d4;
+      --pig-pink: #fdcfd7;
+      --burgundy: #690a08;
+      --ink: #121827;
+      --panel-glow: rgba(255, 255, 255, 0.88);
+      --shadow: 0 28px 55px rgba(7, 26, 59, 0.18);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Work Sans", sans-serif;
+      color: var(--deep-cove);
+      background:
+        radial-gradient(900px circle at 85% -20%, rgba(157, 180, 212, 0.75), transparent 55%),
+        radial-gradient(700px circle at 0% 0%, rgba(7, 26, 59, 0.2), transparent 50%),
+        linear-gradient(180deg, rgba(157, 180, 212, 0.85) 0%, rgba(157, 180, 212, 0.6) 55%, rgba(157, 180, 212, 0.35) 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 36px auto 80px;
+      padding: 0 24px;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(7, 26, 59, 0.15);
+    }
+
+    .brand {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 30px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: rgba(7, 26, 59, 0.75);
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--burgundy);
+      border-bottom-color: var(--burgundy);
+    }
+
+    .panel {
+      background: linear-gradient(135deg, var(--panel-glow), rgba(253, 207, 215, 0.6));
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 28px;
+      border: 1px solid rgba(7, 26, 59, 0.12);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: rgba(7, 26, 59, 0.6);
+      margin: 0 0 12px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Bebas Neue", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 12px;
+      color: var(--deep-cove);
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: 0.95;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 42px);
+    }
+
+    h3 {
+      font-size: 22px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: rgba(7, 26, 59, 0.75);
+      max-width: 420px;
+      margin: 12px 0 20px;
+    }
+
+    .hero-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      display: grid;
+      gap: 10px;
+      color: rgba(7, 26, 59, 0.78);
+      font-size: 15px;
+    }
+
+    .hero-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .hero-list span {
+      width: 8px;
+      height: 8px;
+      margin-top: 7px;
+      background: var(--burgundy);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: var(--deep-cove);
+      color: var(--pig-pink);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .cta:hover {
+      background: var(--burgundy);
+      transform: translateY(-2px);
+    }
+
+    .collage {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .photo-card {
+      min-height: 180px;
+      border-radius: 20px;
+      padding: 16px;
+      color: #fff;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 26, 59, 0.1) 0%, rgba(7, 26, 59, 0.65) 100%);
+    }
+
+    .photo-card span {
+      position: relative;
+      z-index: 1;
+      font-size: 20px;
+    }
+
+    .photo-one {
+      background: linear-gradient(120deg, rgba(253, 207, 215, 0.9), rgba(7, 26, 59, 0.7));
+    }
+
+    .photo-two {
+      background: linear-gradient(135deg, rgba(157, 180, 212, 0.9), rgba(105, 10, 8, 0.8));
+    }
+
+    .photo-three {
+      background: linear-gradient(160deg, rgba(7, 26, 59, 0.9), rgba(253, 207, 215, 0.85));
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .media-frame {
+      min-height: 280px;
+      border-radius: 26px;
+      background:
+        linear-gradient(140deg, rgba(253, 207, 215, 0.95), rgba(157, 180, 212, 0.6)),
+        radial-gradient(circle at 20% 20%, rgba(7, 26, 59, 0.35), transparent 50%);
+      border: 1px solid rgba(7, 26, 59, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .media-frame::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 2px solid rgba(7, 26, 59, 0.35);
+      border-radius: 20px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .section-note {
+      max-width: 380px;
+      color: rgba(7, 26, 59, 0.7);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid rgba(7, 26, 59, 0.12);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.8), rgba(157, 180, 212, 0.35));
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(105, 10, 8, 0.5);
+    }
+
+    .card p {
+      margin: 8px 0 0;
+      color: rgba(7, 26, 59, 0.75);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      background: rgba(7, 26, 59, 0.08);
+      color: rgba(7, 26, 59, 0.7);
+    }
+
+    .tall-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+    }
+
+    .tall-card {
+      min-height: 230px;
+      border-radius: 34px;
+      padding: 18px;
+      color: var(--deep-cove);
+      display: flex;
+      align-items: flex-end;
+      font-weight: 600;
+      background:
+        linear-gradient(160deg, rgba(253, 207, 215, 0.9), rgba(255, 255, 255, 0.6)),
+        radial-gradient(circle at 80% 20%, rgba(7, 26, 59, 0.2), transparent 55%);
+      border: 1px solid rgba(7, 26, 59, 0.12);
+    }
+
+    .post-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .post-card {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(7, 26, 59, 0.12);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .post-image {
+      height: 150px;
+      background:
+        linear-gradient(140deg, rgba(157, 180, 212, 0.65), rgba(7, 26, 59, 0.6)),
+        radial-gradient(circle at 20% 20%, rgba(253, 207, 215, 0.75), transparent 60%);
+    }
+
+    .post-body {
+      padding: 16px;
+      font-size: 14px;
+      color: rgba(7, 26, 59, 0.75);
+    }
+
+    .device-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      align-items: center;
+    }
+
+    .phone {
+      height: 230px;
+      border-radius: 30px;
+      border: 2px solid rgba(7, 26, 59, 0.2);
+      background:
+        linear-gradient(160deg, rgba(253, 207, 215, 0.7), rgba(157, 180, 212, 0.6));
+      position: relative;
+    }
+
+    .phone::after {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(7, 26, 59, 0.2);
+    }
+
+    .video-frame {
+      height: 200px;
+      border-radius: 20px;
+      border: 1px solid rgba(7, 26, 59, 0.2);
+      background:
+        linear-gradient(120deg, rgba(7, 26, 59, 0.7), rgba(253, 207, 215, 0.75));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 0.12em;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .link-card {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(7, 26, 59, 0.2);
+      background: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 11px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .link-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(105, 10, 8, 0.5);
+    }
+
+    .contact {
+      text-align: center;
+      background: linear-gradient(140deg, rgba(7, 26, 59, 0.9), rgba(105, 10, 8, 0.85));
+      color: var(--pig-pink);
+    }
+
+    .contact h2,
+    .contact p {
+      color: var(--pig-pink);
+    }
+
+    .contact .cta {
+      background: var(--pig-pink);
+      color: var(--deep-cove);
+    }
+
+    .reveal > * {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: rise 0.7s ease forwards;
+    }
+
+    .reveal > *:nth-child(1) { animation-delay: 0.05s; }
+    .reveal > *:nth-child(2) { animation-delay: 0.15s; }
+    .reveal > *:nth-child(3) { animation-delay: 0.25s; }
+    .reveal > *:nth-child(4) { animation-delay: 0.35s; }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .collage {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        margin-top: 24px;
+      }
+
+      nav {
+        gap: 10px;
+      }
+
+      .panel {
+        padding: 24px;
+      }
+
+      .collage {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-list {
+        font-size: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal > * {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+
+      .cta,
+      .card,
+      .link-card {
+        transition: none;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-gray-200 min-h-screen flex items-center justify-center p-4">
-    <div class="max-w-md w-full bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-        <!--<img src="IMG_6053.jpeg" alt="Evanna Koury" class="w-full h-64 object-cover">-->
-        <div class="p-6 text-center">
-            <h1 class="text-3xl font-bold mb-2">Evanna Koury</h1>
-            <p class="text-gray-400 mb-4">
-                Welcome to my personal homepage. I'm passionate about technology, design, and creativity. Connect with me to learn more about my work and projects.
-            </p>
-            <a href="mailto:evanna.koury@example.com" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full transition">
-                Contact Me
-            </a>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">ekmedia</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#focus">Focus</a>
+        <a href="#photography">Photography</a>
+        <a href="#social">Social Media</a>
+        <a href="#content">Content</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero panel">
+        <div>
+          <p class="eyebrow">Creative Portfolio</p>
+          <h1>Evanna Koury</h1>
+          <p class="subtitle">Photography, graphic design, and content creation that turn everyday moments into clear, human stories.</p>
+          <ul class="hero-list">
+            <li><span></span>Photography: event, headshots, commemoration, nature, pet.</li>
+            <li><span></span>Graphic design: social media, digital, print.</li>
+            <li><span></span>Social media copywriting, SEO optimization, newsletters.</li>
+            <li><span></span>Content creation: videography, editing, social media management.</li>
+          </ul>
+          <a class="cta" href="#contact">Start a Project</a>
         </div>
-    </div>
+        <div class="collage reveal">
+          <div class="photo-card photo-one"><span>Portfolio</span></div>
+          <div class="photo-card photo-two"><span>Campaigns</span></div>
+          <div class="photo-card photo-three"><span>Editorial</span></div>
+        </div>
+      </section>
+
+      <section id="about" class="panel split">
+        <div class="media-frame"></div>
+        <div>
+          <p class="eyebrow">About Me</p>
+          <h2>Grounded, visual storytelling</h2>
+          <p class="section-note">I build cohesive campaigns across photography, design, and social media so your audience sees the same story everywhere.</p>
+          <div class="pill-row">
+            <span class="pill">Strategy</span>
+            <span class="pill">Creative Direction</span>
+            <span class="pill">Production</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="focus" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Focus</p>
+            <h2>What I create</h2>
+          </div>
+          <p class="section-note">Full-scope creative support from concept to delivery, designed to stay consistent across every platform.</p>
+        </div>
+        <div class="grid reveal">
+          <div class="card">
+            <h3>Photography</h3>
+            <p>Event coverage, headshots, commemorations, nature, and pet sessions with a clean, documentary feel.</p>
+          </div>
+          <div class="card">
+            <h3>Graphic Design</h3>
+            <p>Social media templates, digital assets, and print layouts that keep campaigns cohesive.</p>
+          </div>
+          <div class="card">
+            <h3>Copywriting + SEO</h3>
+            <p>Social copy, SEO tuning, and newsletters with clear tone and strong calls-to-action.</p>
+          </div>
+          <div class="card">
+            <h3>Content Creation</h3>
+            <p>Videography, editing, and social media management for consistent brand rhythm.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="photography" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Photography</p>
+            <h2>Scenes and stories</h2>
+          </div>
+          <p class="section-note">Coverage built around people, place, and memory. Each shoot is designed to feel effortless and honest.</p>
+        </div>
+        <div class="tall-grid reveal">
+          <div class="tall-card">Event</div>
+          <div class="tall-card">Headshots</div>
+          <div class="tall-card">Commemoration</div>
+          <div class="tall-card">Nature</div>
+          <div class="tall-card">Pet</div>
+        </div>
+      </section>
+
+      <section id="social" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Social Media</p>
+            <h2>Posts that connect</h2>
+          </div>
+          <p class="section-note">Strategy, copy, and design that keep your message consistent from feed to newsletter.</p>
+        </div>
+        <div class="post-grid reveal">
+          <div class="post-card">
+            <div class="post-image"></div>
+            <div class="post-body">
+              <strong>Launch teaser</strong>
+              <p>Short-form copy with SEO-friendly headlines and a clear CTA.</p>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="post-image"></div>
+            <div class="post-body">
+              <strong>Community spotlight</strong>
+              <p>Story-first post templates paired with carousel graphics.</p>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="post-image"></div>
+            <div class="post-body">
+              <strong>Newsletter lead-in</strong>
+              <p>Copy and layout preview tied to campaign goals.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="content" class="panel split">
+        <div>
+          <p class="eyebrow">Content Creation</p>
+          <h2>Videography and editing</h2>
+          <p class="section-note">High-touch production for reels, promos, and campaign content, paired with ongoing social management.</p>
+          <div class="pill-row">
+            <span class="pill">Video</span>
+            <span class="pill">Editing</span>
+            <span class="pill">Management</span>
+          </div>
+        </div>
+        <div class="device-row">
+          <div class="phone"></div>
+          <div class="phone"></div>
+          <div class="video-frame">Video</div>
+        </div>
+      </section>
+
+      <section id="work" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Portfolio Links</p>
+            <h2>Selected work</h2>
+          </div>
+          <p class="section-note">Replace the links below with your live work across social, print, newsletters, videography, and campaign launches.</p>
+        </div>
+        <div class="link-grid reveal">
+          <a class="link-card" href="#">Social Media</a>
+          <a class="link-card" href="#">Print Campaigns</a>
+          <a class="link-card" href="#">Newsletters</a>
+          <a class="link-card" href="#">Videography</a>
+          <a class="link-card" href="#">Campaign Work</a>
+        </div>
+      </section>
+
+      <section id="contact" class="panel contact">
+        <p class="eyebrow">Contact</p>
+        <h2>Ready to collaborate?</h2>
+        <p>Share your brief or ask for availability. I will follow up with a project plan and timeline.</p>
+        <a class="cta" href="mailto:evanna.koury@example.com">Email Evanna</a>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
-
