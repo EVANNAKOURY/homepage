@@ -19,6 +19,15 @@
       --radius: 24px;
     }
 
+    @font-face {
+      font-family: "Bodoni Poster";
+      src:
+        local("Bodoni Poster"),
+        local("BodoniPoster"),
+        url("fonts/Bodoni Poster/Bodoni Poster.otf") format("opentype");
+      font-display: swap;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -61,10 +70,9 @@
     }
 
     .brand {
-      font-family: "Bebas Neue", sans-serif;
+      font-family: "Bodoni Poster", "Bodoni MT", "Didot", serif;
       font-size: 30px;
       letter-spacing: 0.18em;
-      text-transform: uppercase;
     }
 
     nav {
@@ -515,7 +523,7 @@
 <body>
   <div class="page">
     <header>
-      <div class="brand">ekmedia</div>
+      <div class="brand">EKmedia</div>
       <nav>
         <a href="#about">About</a>
         <a href="#focus">Focus</a>
